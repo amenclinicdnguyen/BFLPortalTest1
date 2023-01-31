@@ -1,0 +1,24 @@
+
+version: "2"
+services:
+  webserver:
+    image: bflportal_test
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./app:/var/www/html
+    environment:
+      MYSQL_DB_CONNECTION: test
+      MYSQL_DB_NAME: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      SITE_URL: http://localhost
+    networks:
+      - front-tier
+      - back-tier
+
+networks:
+  # The presence of these objects is sufficient to define them
+  front-tier: {}
+  back-tier: {}
